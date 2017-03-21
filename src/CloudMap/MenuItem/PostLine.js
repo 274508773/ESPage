@@ -102,7 +102,7 @@ ES.CloudMap.PostLine.include({
     // 树面板
     initPenal: function () {
 
-        this.oPenal = new ES.CloudMap.TagTree(this, {cTitle:'邮路组织结构'}, {
+        this.oPenal = new ES.CloudMap.LineTree(this, {cTitle:'邮路组织结构'}, {
             core: {
                 'animation': 0,
                 'check_callback': true,
@@ -125,7 +125,7 @@ ES.CloudMap.PostLine.include({
     oPenalShow:function(){
 
         this.oPenal.show();
-        this.oPenalPos.show();
+        //this.oPenalPos.show();
         this.bActive = true;
     },
 
@@ -136,6 +136,13 @@ ES.CloudMap.PostLine.include({
 
         this.bActive = false;
     },
+
+    setActive: function (oCtrl) {
+        // 添加 样式为 活动
+        //oCtrl.addClass('ec-active');
+
+    },
+
 });
 
 
@@ -163,7 +170,7 @@ ES.CloudMap.PostLine.include({
         }
     },
 
-    setActive: function (oCtrl) {
+    setEditActive: function (oCtrl) {
         if (this.aoEditTool.length <= 0) {
             oCtrl.addClass('ec-active');
         }
@@ -189,7 +196,8 @@ ES.CloudMap.PostLine.include({
 
     // 树面板
     initDrawTool:function(){
-        this.aoTool.push(new ES.CloudMap.PostLineDrawTool(this,{}));
+        this.oDrawTool = new ES.CloudMap.PostLineDrawTool(this,{});
+        this.aoTool.push(this.oDrawTool);
     },
 
     // 添加到UI
@@ -204,7 +212,7 @@ ES.CloudMap.PostLine.include({
         }
     },
 
-    setActive: function (oCtrl) {
+    setDrawActive: function (oCtrl) {
         if (this.aoTool.length <= 0) {
             oCtrl.addClass('ec-active');
         }
@@ -247,7 +255,7 @@ ES.CloudMap.PostLine.include({
         }
     },
 
-    setActive: function (oCtrl) {
+    setSaveACalActive: function (oCtrl) {
         if (this.aoSaveACalTool.length <= 0) {
             oCtrl.addClass('ec-active');
         }

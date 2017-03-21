@@ -119,3 +119,6 @@ jake.addListener('complete', function () {
         CM.build(complete, '7', 'CloudMapOF', getDefaultVertion(vertion),'D:\\hbgps\\workspace\\hbgps\\web\\Asset\\scripts\\site\\Page\\');
     });
 }
+
+
+

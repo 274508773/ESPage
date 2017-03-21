@@ -206,24 +206,18 @@ ES.CloudMap.TagTree.include({
                 //self.drawNode();
             };
             this.oPopTree.selectCallBack = function (e, oNode) {
-                //self._oParent.editLayer(oNode.node);
-                var oTemp = self.oPopTree.$_oTree.get_node(oNode.node.parent);
-                oNode.node.parentText = oTemp.text;
-                self._oParent.fire('CloudMap:EditTool.edit', {oNode: oNode.node});
-
+                self.selectDeal(oNode);
             }
         }
     },
 
-    //// 获得所有的 节点
-    //drawNode: function () {
-    //    // this.$_oTree.instance.get_node('#')
-    //    //this.$_oTree.instance.get_node('#')
-    //    var oNode = this.oPopTree.$_oTree.get_node('#');
-    //    var aoNode = this.getChildNode(oNode);
-    //
-    //    this._oParent.fire('CloudMap:ShowLayer.DrawLayers',{aoNode:aoNode})
-    //},
+    selectDeal: function (oNode) {
+
+        var oTemp = this.oPopTree.$_oTree.get_node(oNode.node.parent);
+        oNode.node.parentText = oTemp.text;
+        this._oParent.fire('CloudMap:EditTool.edit', {oNode: oNode.node});
+
+    },
 
     getChildNode: function (oNode) {
 

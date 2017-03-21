@@ -33,7 +33,8 @@ ES.CloudMap.PostLineDrawTool = ES.CloudMap.BaseTool.extend({
         var self =this;
         this.$_oLi.find('button').bind('click', function () {
             self._oParent.oPenalPos.show();
-            self._oParent.setActive(self);
+            $(this).addClass('ec-active');
+            $(this).parent().siblings().find('button').removeClass('ec-active');
         });
     },
 

@@ -123,7 +123,7 @@ ES.Util = {
 	//getData:ajax请求函数
 	//@oParam：为请求的数据对象；
 	//@cUrl：为请求的URL
-	// @fnCallBack为回调函数；
+	//@fnCallBack为回调函数；
 	//@oContext为继承类；
 	//@oExParam 只能为对象，不能为字符串
 	getData: function (oParam, cUrl, fnCallBack, oContext, oExParam, oReqTemp) {

@@ -54,6 +54,8 @@ var deps = {
 			'CloudMap/PO/CreatePos.js',
 			'CloudMap/Handler/PostLine/PostLineDrawTool.js',
 			'CloudMap/PostPopWnd/PostLineWnd.js',
+
+			'CloudMap/TreePenal/LineTree.js',
 			//'CloudMap/PO/TagTree.js',
 			//'CloudMap/PO/TreeFrame.js',
 			//'CloudMap/PO/PostPosLayer.js',

@@ -160,6 +160,16 @@ ES.Common.DtGrid = ES.Class.extend({
         }
     },
 
+    clearGrid: function () {
+        if (!this._aoData || this._aoData.length <= 0) {
+            return;
+        }
+        this._aoData.splice(0, this._aoData.length);
+        if (this.dtGrid) {
+            this.dtGrid.reload(true);
+        }
+    },
+
     // 更新行数据
     updateRow: function ( ) {
 

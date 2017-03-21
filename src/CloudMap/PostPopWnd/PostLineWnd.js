@@ -129,7 +129,7 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
     initOn: function () {
 
         this._oParent.on('CloudMap:PopWnd.showPostLine', this.showModal, this);
-        this._oParent.on('CloudMap:PopWnd.editShowPostLine', this.editShow, this);
+        //this._oParent.on('CloudMap:PopWnd.editShowPostLine', this.editShow, this);
         this._oParent.on('CloudMap:PopWnd.setPosPostLine', this.setPos, this);
     },
 
@@ -142,27 +142,27 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
     },
 
 
-    editShow: function (oData) {
-        if (!oData || !oData.oInfo) {
-            return;
-        }
-        var oPos = oData.oPos;
-
-        var nH = this.$_oContainer.height();
-        var nW = this.$_oContainer.width();
-
-        this.$_oContainer.css({top: (oPos.y - nH - this.oOption.oOffset.nH) + 'px', left: (oPos.x - nW / 2 - this.oOption.oOffset.nW) + 'px'});
-
-        $('#PostLineNo').val(oData.oBusInfo.cId);
-        $('#PostLineName').val(oData.oBusInfo.cName);
-
-        this.oBusData = {};
-        this.oBusData.Id =1;
-        this.oBusData.oInfo = oData.oInfo;
-        this.cParentId = oData.oBusInfo.cParentId;
-
-        this.$_oContainer.show();
-    },
+    //editShow: function (oData) {
+    //    if (!oData || !oData.oInfo) {
+    //        return;
+    //    }
+    //    var oPos = oData.oPos;
+    //
+    //    var nH = this.$_oContainer.height();
+    //    var nW = this.$_oContainer.width();
+    //
+    //    this.$_oContainer.css({top: (oPos.y - nH - this.oOption.oOffset.nH) + 'px', left: (oPos.x - nW / 2 - this.oOption.oOffset.nW) + 'px'});
+    //
+    //    $('#PostLineNo').val(oData.oBusInfo.cId);
+    //    $('#PostLineName').val(oData.oBusInfo.cName);
+    //
+    //    this.oBusData = {};
+    //    this.oBusData.Id =1;
+    //    this.oBusData.oInfo = oData.oInfo;
+    //    //this.cParentId = oData.oBusInfo.cParentId;
+    //
+    //    this.$_oContainer.show();
+    //},
 
     showModal: function (oData) {
         var nH = this.$_oContainer.height();
@@ -171,12 +171,21 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
         var oPos = oData.oPos;
 
         this.$_oContainer.css({top: (oPos.y - nH - this.oOption.oOffset.nH) + 'px', left: (oPos.x - nW / 2 - this.oOption.oOffset.nW) + 'px'});
-
-        $('#PostLineName').val();
-
+        var Id = 1;
+        if(oData.oBusData.id>0)
+        {
+            $('#PostLineName').val(oData.oBusData.cName);
+            $('#PostLineNo').val(oData.oBusData.cId);
+        }
+        else
+        {
+            $('#PostLineName').val();
+            $('#PostLineNo').val();
+            Id = 0;
+        }
 
         this.oBusData = oData;
-        this.oBusData.Id = 0;
+        this.oBusData.Id = Id;
         this.$_oContainer.show();
 
     },

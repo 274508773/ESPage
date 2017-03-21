@@ -27,6 +27,8 @@ ES.CloudMap.PostLineEditTool = ES.CloudMap.BaseTool.extend({
         var self =this;
         this.$_oLi.find('button').bind('click', function () {
             self._oParent.oPenalPos.show();
+            //self.addClass('ec-active');
+            //self.siblings().removeClass('ec-active');
         });
     },
 

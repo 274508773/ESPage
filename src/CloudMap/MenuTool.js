@@ -7,26 +7,10 @@ ES.CloudMap.MenuTool = ES.Evented.extend({
     cHtml:
     '<div class="ex-maptool-box ex-maptool-box-white">' +
     '   <ul class="ex-map-tab ec-text-center ex-maptool-tab ex-cloud-map-menu">' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-circle" data-flag="Grid"  data-tab-index="1"><i class="ec-icon-th-large"></i></button><p>网格</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-circle" data-flag="Line"  data-tab-index="2"><i class="ec-icon-ils"></i></button><p>线路</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-circle" data-flag="Fence" data-tab-index="3"><i class="ec-icon-slack"></i></button><p>围栏</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-circle" data-flag="Poi"   data-tab-index="4"><i class="ec-icon-map-marker"></i></button><p>兴趣点</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-circle" data-flag="Pos" 　data-tab-index="4"><i class="ec-icon-flag"></i></button><p>卡口</p></li>' +
-
     '   </ul>' +
     '</div>' +
     '<div class="ex-maptool-box  ex-maptool-tab-draw">' +
     '    <ul class="ex-map-tab ec-text-center ex-maptool-tab ex-cloud-map-tool">' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-radius" data-object="0" ><i class="ec-icon-dot-circle-o"></i></button><p>画点</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-radius" data-object="1" ><i class="ec-icon-xing"></i></button><p>画线</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-radius" data-object="2" ><i class="ec-icon-stop"></i></button><p>画矩形</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-radius" data-object="3" ><i class="ec-icon-star"></i></button><p>画多边形</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-radius" data-object="4" ><i class="ec-icon-circle"></i></button><p>画圆形</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-radius" data-object="5"><i class="ec-icon-circle"></i></button><p>编辑</p></li>' +
-        //
-        //'       <li><button class="ec-btn ec-btn-secondary ec-radius level" data-object="6"><i class="ec-icon-star"></i></button><p>删除</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-radius level" data-object="7" ><i class="ec-icon-circle"></i></button><p>确定</p></li>' +
-        //'       <li><button class="ec-btn ec-btn-secondary ec-radius level" data-object="8" ><i class="ec-icon-star"></i></button><p>取消</p></li>' +
     '   </ul>' +
     '</div>',
 
@@ -71,7 +55,6 @@ ES.CloudMap.MenuTool = ES.Evented.extend({
             return;
         }
         oCtrl.setPContainer(this);
-
 
         this.$_oContainer.find('ul.ex-cloud-map-menu').append($_oLi);
 

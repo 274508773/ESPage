@@ -71,11 +71,12 @@ ES.CloudMap.CreatePos = ES.Evented.extend({
         this.initPen();
 
         // 业务数据
-        this.oBusData = {};
+        this.oBusData = {id:0};
     },
 
     // 添加grid
     initGrid: function () {
+
         this.oGrid = new ES.Common.DtGrid(this, {
                 cGridContainer: 'dtGridpwContainer',
                 cPagerContainer: 'dtGridpwToolBarContainer',
@@ -95,14 +96,36 @@ ES.CloudMap.CreatePos = ES.Evented.extend({
                     columnClass: 'text-center grid-blue',
                     resolution: function (value, record, column, grid, dataNo, columnNo) {
                         var content = '';
-                        content += '<a  href="javascript:void(0);" title="添加" ><i class="ec-icon-eye"></i></a>';
-                        content += '&nbsp;&nbsp;';
-                        content += '<a  href="javascript:void(0);" title="下移"><i class="ec-icon-link"></i></a>';
-                        content += '&nbsp;&nbsp;';
-                        content += '<a  href="javascript:void(0);" title="上移"><i class="ec-icon-trash"></i></a>';
+                        //content += '<a  href="javascript:void(0);" title="添加" ><i class="ec-icon-eye"></i></a>';
+                        //content += '&nbsp;&nbsp;';
+                        //content += '<a  href="javascript:void(0);" title="下移"><i class="ec-icon-link"></i></a>';
+                        //content += '&nbsp;&nbsp;';
+                        content += '<a  href="javascript:void(0);" title="删除"><i class="ec-icon-trash"></i></a>';
                         return content;
                     }
                 }]);
+
+
+        this.oGrid.initClick = function (e, record) {
+            // 点击删除节点
+            if (e.target.className === "ec-icon-trash") {
+
+                if (!this._aoData || this._aoData.length <= 0) {
+                    return;
+                }
+
+                for (var i = this._aoData.length - 1; i >= 0; i--) {
+                    if (this._aoData[i].id == record.id) {
+                        this._aoData.splice(i, 1);
+                    }
+                }
+
+                if (this) {
+                    // 重新加载内存中的数据
+                    this.dtGrid.reload(true);
+                }
+            }
+        }
 
     },
 
@@ -174,7 +197,7 @@ ES.CloudMap.CreatePos = ES.Evented.extend({
                 self._oParent.fire('CloudMap:PopWnd.showPostLine', {
                     oInfo: oInfo,
                     oPos: oPos,
-                    oBusInfo:oLayer.oBusInfo
+                    oBusData:oLayer.oBusData
                 });
             });
         });
@@ -201,23 +224,6 @@ ES.CloudMap.CreatePos = ES.Evented.extend({
         this.oPopTree.$_oTree.refresh();
     },
 
-    initButton: function () {
-
-        //var self = this;
-        //
-        //var aoButton = [
-        //    {
-        //        value: ES.Lang.Boss[1],
-        //        callback: function () {
-        //            self.ok();
-        //            return false;
-        //        },
-        //        autofocus: true
-        //    }
-        //];
-        //
-        //this.oOption.button = aoButton;
-    },
 
     // 显示界面
     initUI: function () {
@@ -244,6 +250,7 @@ ES.CloudMap.CreatePos = ES.Evented.extend({
         oLine.edited = true;
         oLine.oBusData = this.oBusData;
         oLine.addTo(this._oDrawLayer);
+        this._oMap.fitBounds(this._oDrawLayer.getBounds());
     },
 
     setParentEvent: function () {
@@ -351,6 +358,11 @@ ES.CloudMap.CreatePos.include({
 
         // 添加事件
         this.oBtnConfirm.bind('click', function () {
+            if(self.oGrid._aoData.length<=1){
+                ES.aWarn('油路点的个数必须大于1');
+                return;
+            }
+
             // 画线到界面
             var aoLatLng = self.oGrid._aoData.map(function (oItem) {
                 // 使用 海拔来标记点 是否可以编辑
@@ -366,13 +378,35 @@ ES.CloudMap.CreatePos.include({
             // 显示保存和取消
             self._oParent.addSaveACalToUI();
         });
+
+
+        this.$_oContainer.find('a.ex-maptool-postway-close').bind('click', function () {
+            self.oGrid.clearGrid();
+            self.oPen.handler.disable();
+            self._oParent.clearLayers();
+            self._oParent.oDrawTool.removeActive();
+            self._oParent.addToUI();
+            self.hide();
+        });
     },
 
-    // 外部设置值显示,有2个参数，一个参数是数组、一个是业务数据
+    // 设置业务数据
     setBusData:function(oData) {
-        this.oGrid.addRows(oData.aoLatLng);
-        this.oBusData = oData.oBusData
-        this.oBtnConfirm.click();
-    }
+
+        this.oBusData = oData;
+        this.oPen.handler.disable();
+        this._oParent.clearLayers();
+        this.addLine(oData.aoLatLng);
+        this.oPen.handler.enable();
+        // 显示保存和取消
+        this._oParent.addSaveACalToUI();
+    },
+
+    // 设置gird数据
+    setGridData: function (oData) {
+        this.oGrid.addRows(oData.aoData,true);
+    },
+
+
 
 });
