@@ -71,7 +71,7 @@ ES.CloudMap.CreatePos = ES.Evented.extend({
         this.initPen();
 
         // 业务数据
-        this.oBusData = {id:0};
+        this.oBusData = {id: 0};
     },
 
     // 添加grid
@@ -172,7 +172,7 @@ ES.CloudMap.CreatePos = ES.Evented.extend({
         var self =this;
         this._oMap.on('draw:edited', function (e) {
 
-            if(!self._oParent.bActive){
+            if(!self._oParent.getActive()){
                 return
             }
 
@@ -234,7 +234,7 @@ ES.CloudMap.CreatePos = ES.Evented.extend({
 
         // 确定按钮
         this.oBtnConfirm = this.$_oContainer.find('.ec-btn-success');
-
+        this.oBtnDel = this.$_oContainer.find('.ec-btn-secondary');
         // 添加点按钮
         this.oBtnAddPos = this.$_oContainer.find('.ex-postway-info-btn>a');
 
@@ -328,11 +328,12 @@ ES.CloudMap.CreatePos.include({
     '                                   </div>'+
     '                               </div>'+
     '                               <div class="ex-postway-way">'+
-    '                                   <div id="dtGridpwContainer" class="dt-grid-container" style="width:100%;height:200px;"></div>'+
+    '                                   <div id="dtGridpwContainer" class="dt-grid-container" style="width:100%;height:325px;"></div>'+
     '                                   <div id="dtGridpwToolBarContainer" class="dt-grid-toolbar-container"></div>'+
     '                               </div>'+
     '                               <div class="ec-form-group ec-text-right ec-margin-right-sm ec-margin-top-0">'+
     '                                   <a href="javascript:void(0);" class="ec-btn ec-btn-sm ec-btn-success ec-radius">确定</a>'+
+    '                                   <a href="javascript:void(0);" class="ec-btn ec-btn-sm ec-btn-secondary ec-radius">删除</a>'+
     '                               </div>'+
     '                           </div>'+
     '                       </div>'+
@@ -358,7 +359,7 @@ ES.CloudMap.CreatePos.include({
 
         // 添加事件
         this.oBtnConfirm.bind('click', function () {
-            if(self.oGrid._aoData.length<=1){
+            if (self.oGrid._aoData.length <= 1) {
                 ES.aWarn('油路点的个数必须大于1');
                 return;
             }
@@ -381,13 +382,29 @@ ES.CloudMap.CreatePos.include({
 
 
         this.$_oContainer.find('a.ex-maptool-postway-close').bind('click', function () {
-            self.oGrid.clearGrid();
-            self.oPen.handler.disable();
-            self._oParent.clearLayers();
-            self._oParent.oDrawTool.removeActive();
-            self._oParent.addToUI();
-            self.hide();
+            self.close();
         });
+
+
+        this.oBtnDel.bind('click', function () {
+            // 删除线路数据
+            self._oParent.fire('CloudMap:PostLineDelWnd.del',{oModel:self.oBusData});
+        });
+    },
+
+    close: function () {
+        this.oGrid.clearGrid();
+        this.oPen.handler.disable();
+        this._oParent.clearLayers();
+        this._oParent.oDrawTool.removeActive();
+        this._oParent.addDrawToUI();
+        this.hide();
+    },
+
+    calEdit: function () {
+        this.oPen.handler.disable();
+        this.oGrid.clearGrid();
+        this.hide();
     },
 
     // 设置业务数据

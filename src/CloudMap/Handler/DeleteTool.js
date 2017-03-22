@@ -1,5 +1,6 @@
 /**
  * Created by liulin on 2017/3/17.
+ *
  */
 
 ES.CloudMap.DeleteTool = ES.CloudMap.BaseTool.extend({
@@ -8,38 +9,24 @@ ES.CloudMap.DeleteTool = ES.CloudMap.BaseTool.extend({
 
     // 构造函数
     initialize: function (oParent, options) {
-        ES.setOptions(this, options);
-        this.oPenStyle = this.oOption.oPenStyle;
-
-        this._oParent = oParent;
-        this._oPage = oParent._oParent;
-
-
-        this._oMap = this._oPage.getMap();
-        this.oPen = null;
-
-
-
-        this.initUI();
-
-        this.oActHandler = null;
+        ES.CloudMap.BaseTool.prototype.initialize.call(this,oParent, options);
     },
 
-    initUI: function () {
-        this.$_oLi = $(this.cHtml);
-    },
 
     // 绑定事件
     bandClick: function () {
-        var self =this;
+        ES.CloudMap.BaseTool.prototype.bandClick.call(this);
+
+        var self = this;
         this.$_oLi.find('button').bind('click', function () {
-            self._oParent.on('CloudMap:DelCloudMap.del', this.del, this);
+            // 获得数据
+            var aoLayer = self._oParent.getLayer();
+            if (!aoLayer || aoLayer.length <= 0) {
+                ES.aWarn('没有可以删除的数据');
+                return;
+            }
+            self._oParent.fire('CloudMap:DelCloudMap.del', {oModel: aoLayer[0].oBusData});
         });
     },
-
-
-
-
-
 
 });

@@ -9,32 +9,19 @@ ES.CloudMap.PostLineDrawTool = ES.CloudMap.BaseTool.extend({
 
     // 构造函数
     initialize: function (oParent, options) {
-        ES.setOptions(this, options);
-        this.oPenStyle = this.oOption.oPenStyle;
 
-        this._oParent = oParent;
-        this._oPage = oParent._oParent;
+        ES.CloudMap.BaseTool.prototype.initialize.call(this,oParent, options);
 
-
-        this._oMap = this._oPage.getMap();
-        this.oPen = null;
-
-
-        this.initUI();
-
-        this.oActHandler = null;
     },
 
-    initUI: function () {
-        this.$_oLi = $(this.cHtml);
-    },
+
 
     bandClick: function () {
+        ES.CloudMap.BaseTool.prototype.bandClick.call(this);
         var self =this;
         this.$_oLi.find('button').bind('click', function () {
             self._oParent.oPenalPos.show();
-            $(this).addClass('ec-active');
-            $(this).parent().siblings().find('button').removeClass('ec-active');
+
         });
     },
 

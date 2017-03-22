@@ -71,31 +71,11 @@ ES.CloudMap.MenuTool = ES.Evented.extend({
     },
 
     // 操作
-    appendTool: function ($_oLi) {
+    appendTool: function (oCtrl) {
         //this.$_oContainer.find('ul.ex-cloud-map-tool').empty();
-        this.$_oContainer.find('ul.ex-cloud-map-tool').append($_oLi);
-
+        this.$_oContainer.find('ul.ex-cloud-map-tool').append(oCtrl.$_oLi);
     },
 
-
-    setActive: function (oCtrl) {
-        if (this.aoCtrl.length <= 0) {
-            oCtrl.addClass('ec-active');
-            oCtrl.oPenalShow();
-
-        }
-
-        for (var i = 0; i < this.aoCtrl.length; i++) {
-            if (oCtrl !== this.aoCtrl[i]) {
-                this.aoCtrl[i].removeClass('ec-active');
-                this.aoCtrl[i].oPenalHide();
-            }
-            else {
-                this.aoCtrl[i].addClass('ec-active');
-                this.aoCtrl[i].oPenalShow();
-            }
-        }
-    },
 
 
 });

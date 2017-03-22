@@ -1,8 +1,11 @@
 /**
- * Created by liulin on 2017/3/17.
+ * Created by liulin on 2017/3/22.
  */
 
-ES.CloudMap.CalEditTool = ES.CloudMap.BaseTool.extend({
+
+
+
+ES.CloudMap.PostLineCalTool = ES.CloudMap.BaseTool.extend({
 
     cHtml: '<li><button class="ec-btn ec-btn-secondary ec-radius" ><i class="ec-icon-dot-circle-o"></i></button><p>取消</p></li>',
 
@@ -25,10 +28,8 @@ ES.CloudMap.CalEditTool = ES.CloudMap.BaseTool.extend({
             // 显示新增按钮
             self._oParent.addDrawToUI();
             self._oParent.clearLayers();
+            self._oParent.oPenalPos.close();
         });
     },
-
-
-
 
 });

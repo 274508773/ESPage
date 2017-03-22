@@ -9,43 +9,28 @@ ES.CloudMap.EditTool = ES.CloudMap.BaseTool.extend({
 
     // 构造函数
     initialize: function (oParent, options) {
-        ES.setOptions(this, options);
-        this.oPenStyle = this.oOption.oPenStyle;
-
-        this._oParent = oParent;
-        this._oPage = oParent._oParent;
-
-        this._oDrawLayer= options.oDrawLayer;
-        this._oMap = this._oPage.getMap();
+        ES.CloudMap.BaseTool.prototype.initialize.call(this,oParent, options);
+        this._oDrawLayer =oParent.getDrawLayer();
         this.oPen = null;
 
         this.initPen();
-        this.initOn();
 
-        this.initUI();
-
-        this.oActHandler = null;
     },
 
-    initUI: function () {
-        this.$_oLi = $(this.cHtml);
-    },
 
     bandClick: function () {
+        ES.CloudMap.BaseTool.prototype.bandClick.call(this);
         var self =this;
         this.$_oLi.find('button').bind('click', function () {
             self.oPen.handler.enable();
-            self._oParent.setActive(self);
-
-            // 点击编辑 显示确定和取消
             self._oParent.addSaveACalToUI();
+
         });
     },
 
     //  画点
     initPen: function () {
-        this.oPen =
-        {
+        this.oPen = {
             enabled: this.oPenStyle,
             handler: new L.EditToolbar.Edit(this._oMap, {
                 featureGroup: this._oDrawLayer,
@@ -64,14 +49,15 @@ ES.CloudMap.EditTool = ES.CloudMap.BaseTool.extend({
 
     // 添加事件
     initOn: function () {
-        this._oParent.on('CloudMap:EditTool.calEdit',this.calEdit,this);
+        ES.CloudMap.BaseTool.prototype.initOn.call(this);
 
+        this._oParent.on('CloudMap:EditTool.calEdit',this.calEdit,this);
         this._oParent.on('CloudMap:EditTool.edit',this.edit,this);
         this._oParent.on('CloudMap:EditTool.SaveEdit',this.saveEdit,this);
 
         var self =this;
         this._oMap.on('draw:edited', function (e) {
-            if(!self._oParent.bActive){
+            if(!self._oParent.getActive()){
                 return
             }
             var oMap = this;
@@ -86,11 +72,7 @@ ES.CloudMap.EditTool = ES.CloudMap.BaseTool.extend({
                     oOption: {},
                 };
 
-
-
                 self._oDrawLayer.addLayer(oLayer);
-
-
 
                 // 弹出层显示的位置信息
                 var oPos = oMap.latLngToLayerPoint(oLatLng);
@@ -99,7 +81,7 @@ ES.CloudMap.EditTool = ES.CloudMap.BaseTool.extend({
                 self._oParent.fire('CloudMap:PopWnd.editShow', {
                     oInfo: oInfo,
                     oPos: oPos,
-                    oBusInfo:oLayer.oBusInfo
+                    oBusData:oLayer.oBusData
                 });
             });
         });
@@ -118,7 +100,6 @@ ES.CloudMap.EditTool = ES.CloudMap.BaseTool.extend({
         this.oPen.handler.disable();
     },
 
-
     // 编辑数据oData:oNode.node.data,
     edit: function (oVal) {
 
@@ -129,13 +110,9 @@ ES.CloudMap.EditTool = ES.CloudMap.BaseTool.extend({
         }
 
         // 编辑围栏数据,画围栏时要表明自己的名称
-        var oVehLine = L.marker(oVal.oNode.data,{});// this.createLayer(oVal.oNode);
-
+        var oVehLine = L.marker(oVal.oNode.data,{});
+        oVehLine.edited = true;
         this._oMap.flyTo(oVal.oNode.data);
-
-        if (!oVehLine) {
-            return;
-        }
 
         var oData = {
             oLatLng: oVal.oNode.data,
@@ -145,7 +122,7 @@ ES.CloudMap.EditTool = ES.CloudMap.BaseTool.extend({
             cParentText :oVal.oNode.parentText,
         }
         oVehLine.cId = oVal.oNode.id;
-        oVehLine.oBusInfo = oData;
+        oVehLine.oBusData = oData;
         oVehLine.addTo(this._oDrawLayer);
 
         this._oParent.addEditToUI();

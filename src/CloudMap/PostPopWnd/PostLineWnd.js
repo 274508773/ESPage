@@ -13,9 +13,9 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
 
     initialize: function (oParent, oOption) {
         this._oParent = oParent;
-        //ES.Common.Pop.prototype.initialize.call(this, oParent, oOption);
+
         ES.setOptions(this, oOption);
-        //this.hideDefaultButton();
+
         this.cFlag = 'PostLine';
         // 窗体在地图上弹出的位置信息
         this.oPopLatLng = null;
@@ -34,6 +34,7 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
         this.afterOpen();
     },
 
+    // 注册按钮事件
     afterOpen: function () {
         var self = this;
         this.$_oContainer.find('.ec-icon-save').parent().bind('click', function () {
@@ -44,6 +45,7 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
         this.$_oContainer.find('a[type="button"]').bind('click', function () {
             self.$_oContainer.hide();
             self._oParent.clearLayers();
+            self._oParent.oPenalPos.close();
         });
 
     },
@@ -65,14 +67,10 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
             return false;
         }
 
-
-
         if (!$('#PostLineName').val()) {
             ES.aWarn('请线路名称！');
             return false;
         }
-
-
 
         return true;
     },
@@ -112,10 +110,6 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
             this._oParent.fire('CloudMap:EditTool.clearLayer');
             // 刷新listview
             this._oParent.fire('PostPosTreeView.reflesh');
-            // 保存数据成功，触发事件
-            //this._oParent.fire('Edit:saveSuccess');
-
-            //this._oParent.on('TreeView.reflesh',this.reflesh,this);
 
             this.$_oContainer.hide();
         }
@@ -129,7 +123,6 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
     initOn: function () {
 
         this._oParent.on('CloudMap:PopWnd.showPostLine', this.showModal, this);
-        //this._oParent.on('CloudMap:PopWnd.editShowPostLine', this.editShow, this);
         this._oParent.on('CloudMap:PopWnd.setPosPostLine', this.setPos, this);
     },
 
@@ -141,29 +134,6 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
         this.$_oContainer.css({top: (oPos.y - nH - this.oOption.oOffset.nH) + 'px', left: (oPos.x - nW / 2 - this.oOption.oOffset.nW) + 'px'});
     },
 
-
-    //editShow: function (oData) {
-    //    if (!oData || !oData.oInfo) {
-    //        return;
-    //    }
-    //    var oPos = oData.oPos;
-    //
-    //    var nH = this.$_oContainer.height();
-    //    var nW = this.$_oContainer.width();
-    //
-    //    this.$_oContainer.css({top: (oPos.y - nH - this.oOption.oOffset.nH) + 'px', left: (oPos.x - nW / 2 - this.oOption.oOffset.nW) + 'px'});
-    //
-    //    $('#PostLineNo').val(oData.oBusInfo.cId);
-    //    $('#PostLineName').val(oData.oBusInfo.cName);
-    //
-    //    this.oBusData = {};
-    //    this.oBusData.Id =1;
-    //    this.oBusData.oInfo = oData.oInfo;
-    //    //this.cParentId = oData.oBusInfo.cParentId;
-    //
-    //    this.$_oContainer.show();
-    //},
-
     showModal: function (oData) {
         var nH = this.$_oContainer.height();
         var nW = this.$_oContainer.width();
@@ -172,7 +142,7 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
 
         this.$_oContainer.css({top: (oPos.y - nH - this.oOption.oOffset.nH) + 'px', left: (oPos.x - nW / 2 - this.oOption.oOffset.nW) + 'px'});
         var Id = 1;
-        if(oData.oBusData.id>0)
+        if(oData.oBusData.nId>0)
         {
             $('#PostLineName').val(oData.oBusData.cName);
             $('#PostLineNo').val(oData.oBusData.cId);

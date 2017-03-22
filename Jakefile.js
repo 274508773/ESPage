@@ -116,9 +116,25 @@ jake.addListener('complete', function () {
 
     task('cm', {async: true}, function (vertion) {
 
-        CM.build(complete, '7', 'CloudMapOF', getDefaultVertion(vertion),'D:\\hbgps\\workspace\\hbgps\\web\\Asset\\scripts\\site\\Page\\');
+        CM.build(complete, '7', 'CloudMap', getDefaultVertion(vertion), 'D:\\hbgps\\workspace\\hbgps\\web\\Asset\\scripts\\site\\Page\\');
+
     });
 }
+
+//视频监控
+{
+    var MV = require('./build/MapView/build.js');
+
+    task('mv', {async: true}, function (vertion) {
+        //MV.build(complete, '3', 'MapView', getDefaultVertion(vertion), 'D:\\java\\workspace\\hbgps\\web\\Asset\\scripts\\site\\Page\\');
+        MV.build(complete, '3', 'MapView', getDefaultVertion(vertion), 'D:\\hbgps\\workspace\\hbgps\\web\\Asset\\scripts\\site\\Page\\');
+    });
+
+}
+
+
+
+
 
 
 

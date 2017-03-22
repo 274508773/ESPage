@@ -1,10 +1,10 @@
 /**
- * Created by exsun on 2017-01-12.
+ * Created by liulin on 2017/3/22.
  */
 
-ES.CloudMap.DelCloudMap = ES.Common.Pop.DelEntity.extend({
+ES.CloudMap.PostLineDelWnd = ES.Common.Pop.DelEntity.extend({
     initOn: function () {
-        this._oParent.on('CloudMap:DelCloudMap.del', this.del, this);
+        this._oParent.on('CloudMap:PostLineDelWnd.del', this.del, this);
     },
 
     saveHandler: function (oData) {
@@ -13,7 +13,7 @@ ES.CloudMap.DelCloudMap = ES.Common.Pop.DelEntity.extend({
         if (oData && oData.IsSuccess) {
             ES.aSucess(ES.Common.Lang[32]);
 
-            this._oParent.fire('PostPosTreeView.reflesh');
+            this._oParent.fire('PostLineTreeView.reflesh');
         }
         else {
             ES.aErr(ES.template(ES.Common.Lang[33], oData));

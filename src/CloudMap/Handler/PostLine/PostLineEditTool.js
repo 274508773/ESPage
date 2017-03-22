@@ -8,34 +8,22 @@ ES.CloudMap.PostLineEditTool = ES.CloudMap.BaseTool.extend({
 
     // 构造函数
     initialize: function (oParent, options) {
-        ES.setOptions(this, options);
-        this.oPenStyle = this.oOption.oPenStyle;
-
-        this._oParent = oParent;
-        this._oPage = oParent._oParent;
-
-        this.initUI();
+        ES.CloudMap.BaseTool.prototype.initialize.call(this,oParent, options);
 
     },
 
-    initUI: function () {
-        this.$_oLi = $(this.cHtml);
-    },
 
     // 绑定事件
     bandClick: function () {
+        ES.CloudMap.BaseTool.prototype.initOn.call(this);
         var self =this;
         this.$_oLi.find('button').bind('click', function () {
             self._oParent.oPenalPos.show();
-            //self.addClass('ec-active');
-            //self.siblings().removeClass('ec-active');
+
         });
     },
 
-    CalEdit: function () {
-        // this.oPen.handler.revertLayers();
-        //this.oPen.handler.disable();
-    },
 
+    // 可以把编辑的功能包装在这里
 
 });

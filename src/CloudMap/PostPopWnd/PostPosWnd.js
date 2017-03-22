@@ -178,13 +178,13 @@ ES.CloudMap.PostPosWnd = ES.CloudMap.PopWnd.extend({
 
         this.$_oContainer.css({top: (oPos.y - nH - this.oOption.oOffset.nH) + 'px', left: (oPos.x - nW / 2 - this.oOption.oOffset.nW) + 'px'});
 
-        $('#PostPosNo').val(oData.oBusInfo.cId);
-        $('#PostPosName').val(oData.oBusInfo.cName);
-        $('#PostPosType').val(oData.oBusInfo.cParentText);
+        $('#PostPosNo').val(oData.oBusData.cId);
+        $('#PostPosName').val(oData.oBusData.cName);
+        $('#PostPosType').val(oData.oBusData.cParentText);
         this.oBusData = {};
         this.oBusData.Id =1;
         this.oBusData.oInfo = oData.oInfo;
-        this.cParentId = oData.oBusInfo.cParentId;
+        this.cParentId = oData.oBusData.cParentId;
 
         this.$_oContainer.show();
     },

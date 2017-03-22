@@ -3,7 +3,7 @@
  */
 
 
-ES.CloudMap.LineTree = ES.CloudMap.TagTree.extend({
+ES.CloudMap.LineTree = ES.CloudMap.PosTree.extend({
 
     // 选择树节点 的操作
     selectDeal: function (oNode) {

@@ -21,7 +21,7 @@ var deps = {
 			'CloudMap/CloudMap.js',
 			'CloudMap/Layout.js',
 			'CloudMap/EditTool.js',
-			'CloudMap/TagTree.js',
+			'CloudMap/TreePenal/PosTree.js',
 
 			'CloudMap/TreeFrame.js',
 			'CloudMap/PopWnd.js',
@@ -32,12 +32,13 @@ var deps = {
 			'CloudMap/Handler/CalEditTool.js',
 			'CloudMap/Handler/DeleteTool.js',
 			'CloudMap/Handler/EditTool.js',
-			'CloudMap/Handler/DrawMarker.js',
+			'CloudMap/Handler/DrawMarkerTool.js',
 			'CloudMap/Handler/SaveTool.js',
 
 			'CloudMap/MenuTool.js',
 			'CloudMap/PostPopWnd/PostPosWnd.js',
-			'CloudMap/MenuItem/PostPos.js',
+			'CloudMap/MenuItem/BaseMenu.js',
+			'CloudMap/MenuItem/PostPosMenu.js',
 		],
 
 		desc: 'HGT 作为基础来包装地图实时监控, 概览页面',
@@ -49,16 +50,15 @@ var deps = {
 
 	CloudMapForPO: {
 		src: [
-			'CloudMap/MenuItem/PostLine.js',
+			'CloudMap/MenuItem/PostLineMenu.js',
 			'CloudMap/Handler/PostLine/PostLineEditTool.js',
-			'CloudMap/PO/CreatePos.js',
+			'CloudMap/Handler/PostLine/PostLineCalTool.js',
+			'CloudMap/TreePenal/CreatePos.js',
 			'CloudMap/Handler/PostLine/PostLineDrawTool.js',
 			'CloudMap/PostPopWnd/PostLineWnd.js',
-
+			'CloudMap/PostPopWnd/PostLineDelWnd.js',
 			'CloudMap/TreePenal/LineTree.js',
-			//'CloudMap/PO/TagTree.js',
-			//'CloudMap/PO/TreeFrame.js',
-			//'CloudMap/PO/PostPosLayer.js',
+
 
 		],
 		desc: 'PO 邮局项目',
