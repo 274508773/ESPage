@@ -97,15 +97,15 @@ ES.Common.JsTree = ES.Evented.extend({
         'plugins':['checkbox', 'types', 'search', 'state', 'unique']
     },
 
+    // 构造函数
     initialize: function (oParent, oOption, oTreeOption) {
 
         ES.extend(this.oTreeOption, oTreeOption);
-        ES.setOptions(this,oOption);
+        ES.setOptions(this, oOption);
 
         this._oParent = oParent;
 
         if (typeof  this.oOption.cSelecter === 'object') {
-
             this.$_oContainer = this.oOption.cSelecter;
         } else {
             this.$_oContainer = $(this.oOption.cSelecter);
@@ -118,10 +118,6 @@ ES.Common.JsTree = ES.Evented.extend({
 
     },
 
-    //setCheck: function (bCheck) {
-    //    this.$_oTree.settings.checkbox.tie_selection = bCheck;
-    //},
-
     // 注册监听事件
     initOn: function () {
     },
@@ -132,10 +128,10 @@ ES.Common.JsTree = ES.Evented.extend({
 
     // 构建树
     initTree: function () {
-
-
+        // 树 对象
         this.oTree = this.$_oContainer.jstree(this.oTreeOption);
 
+        // 树jquery 对象
         this.$_oTree = this.$_oContainer.jstree(true);
 
         this.initCheckEven();
@@ -176,6 +172,7 @@ ES.Common.JsTree = ES.Evented.extend({
     refreshCallBack: function () {
 
     },
+
     // 打开节点 回调函数
     afterOpen: function () {
 
@@ -185,6 +182,7 @@ ES.Common.JsTree = ES.Evented.extend({
     selectCallBack: function () {
         
     },
+
     changedCallBack: function () {
 
     },
@@ -192,12 +190,15 @@ ES.Common.JsTree = ES.Evented.extend({
     dblclickCallBack: function () {
 
     },
+
     checkAllCallBack:function(){
 
     },
+
     uncheckAllCallBack: function () {
 
     },
+
     initCheckEven: function () {
         var self = this;
         if (!this.oTree) {
@@ -213,10 +214,12 @@ ES.Common.JsTree = ES.Evented.extend({
             // 获得所有选中的数组
             self.uncheckCallBack(e, oThisNode);
         });
+
         // 选择所有节点触发
         this.oTree.on('check_all.jstree', function (e, oThisNode) {
             self.checkAllCallBack(e, oThisNode);
         });
+
         this.oTree.on('uncheck_all.jstree', function (e, oThisNode) {
             self.uncheckAllCallBack(e, oThisNode);
         });
@@ -244,11 +247,7 @@ ES.Common.JsTree = ES.Evented.extend({
         this.oTree.on("dblclick.jstree", function (e, oThisNode) {
             self.dblclickCallBack(e, oThisNode);
         });
-        //this.oTree.on('loaded.jstree', function (e, data) {
-        //    var inst = data.instance;
-        //    var obj = inst.get_node(e.target.firstChild.firstChild.lastChild);
-        //    inst.select_node(obj);
-        //});
+
     },
 
     // 获得所有check 的节点数据
@@ -265,7 +264,6 @@ ES.Common.JsTree = ES.Evented.extend({
                 continue;
             }
 
-
             anSiteId.push(parseInt(aoNodeId[i]));
         }
         if (!anSiteId || anSiteId.length <= 0) {
@@ -273,6 +271,26 @@ ES.Common.JsTree = ES.Evented.extend({
         }
         return anSiteId;
     },
+
+    // 获得 选择节点的id
+    getCheckId: function (cPrefix) {
+
+        var aoNodeId = this.$_oTree.get_checked();
+        if (!aoNodeId || aoNodeId.length <= 0) {
+            return [];
+        }
+        var acRtn = aoNodeId;
+
+        if (cPrefix) {
+            acRtn = aoNodeId.map(function (cItem) {
+                if (cItem.indexOf(cPrefix) === 0) {
+                    return cItem.replace(cPrefix, '')
+                }
+            });
+        }
+        return acRtn;
+    },
+
 
     // 获得选中的叶子节点
     getLeafCheckNode: function () {
