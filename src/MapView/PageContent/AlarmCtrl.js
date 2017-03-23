@@ -31,7 +31,7 @@ ES.MapControl.AlarmCtrl = ES.Evented.extend({
                     {'class': 'ec-badge ec-round ec-badge-danger', html: '0'}
                 ],
                 cFlag: 'VehInOut',
-                cObject: 'ES.HGT.MapView.BoxBottom'
+                cObject: 'ES.MapView.BoxBottom'
             },
             {
                 'class': 'ec-btn ec-btn-block ec-btn-danger',
@@ -40,7 +40,7 @@ ES.MapControl.AlarmCtrl = ES.Evented.extend({
                     {'class': 'ec-badge ec-round ec-badge-danger', html: '0'}
                 ],
                 cFlag: 'AlarmMonitor',
-                cObject: 'ES.HGT.MapView.AlarmBoxBottom'
+                cObject: 'ES.MapView.AlarmBoxBottom'
             }
         ]
     },

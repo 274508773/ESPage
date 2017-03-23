@@ -2,7 +2,7 @@
  * Created by liulin on 2017/1/7.
  */
 
-ES.HGT.MapView.MapUserLive = ES.HGT.MapView.MapLive.extend({
+ES.MapView.MapUserLive = ES.MapView.MapLive.extend({
 
     /*
      为构造函数
@@ -114,7 +114,7 @@ ES.HGT.MapView.MapUserLive = ES.HGT.MapView.MapLive.extend({
         var oLineLayer = this.findLayer(this._oLineGroup, oPosInfo.PhoneNum);
         if (!oLineLayer) {
             //创建线图层
-            var oPloyLine = L.polyline([oLatLng], ES.HGT.oConfig.oLiveLineConfig);
+            var oPloyLine = L.polyline([oLatLng], ES.oConfig.oLiveLineConfig);
             oPloyLine.cId = oPosInfo.PhoneNum;
             oPloyLine.oPrePosInfo = oPosInfo;
             oPloyLine.addTo(this._oLineGroup);
@@ -127,7 +127,7 @@ ES.HGT.MapView.MapUserLive = ES.HGT.MapView.MapLive.extend({
 
         //创建轨迹图层
         if (oPrePosInfo) {
-            var oTrackLayer = L.circleMarker([oPrePosInfo.Lat, oPrePosInfo.Lng], ES.HGT.oConfig.oLiveCircleMarkerConfig);
+            var oTrackLayer = L.circleMarker([oPrePosInfo.Lat, oPrePosInfo.Lng], ES.oConfig.oLiveCircleMarkerConfig);
             var cHTML = this._getVecMarkerHtml(oPrePosInfo);
             oTrackLayer.bindPopup(cHTML, this.oPopOption);
 
@@ -158,7 +158,7 @@ ES.HGT.MapView.MapUserLive = ES.HGT.MapView.MapLive.extend({
         oLayer.cVehNo = oPosInfo.VehicleNo;
             oLayer.nW =   10;
         oLayer.oData = oPosInfo;
-        var oOption = L.extend({ radius:100 },  ES.HGT.oConfig.oLiveCircleConfig)
+        var oOption = L.extend({ radius:100 },  ES.oConfig.oLiveCircleConfig)
         //var oCircle = L.circleMarker(oLatLng, oOption).addTo(this._oLivePosGroup);
         var oCircle = L.circle(oLatLng, oOption).addTo(this._oLivePosGroup);
         //把矢量点添加到地图上
@@ -274,7 +274,7 @@ ES.HGT.MapView.MapUserLive = ES.HGT.MapView.MapLive.extend({
 
 });
 
-ES.HGT.MapView.MapUserLive.include({
+ES.MapView.MapUserLive.include({
     oPopOption: { maxWidth: 400 },
     // 获得实时跟踪点, 地图统计点数据
     _getPosIconInfo: function (oItem, oOption) {

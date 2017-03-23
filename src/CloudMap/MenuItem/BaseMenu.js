@@ -1,5 +1,6 @@
 /**
  * Created by liulin on 2017/3/22.
+ *
  */
 
 // 基础菜单
@@ -17,8 +18,9 @@ ES.CloudMap.BaseMenu = ES.Evented.extend({
 
         this.aoDrawTool = [];
         this.aoEditTool=[];
-        this.aoPopWnd = [];
         this.aoSaveACalTool= [];
+        this.aoPopWnd = [];
+
 
         // 存在统一的编辑、删除
         this.oEditTool = null;

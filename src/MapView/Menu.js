@@ -6,7 +6,7 @@
  */
 
 
-ES.HGT.MapView.Menu = ES.Evented.extend({
+ES.MapView.Menu = ES.Evented.extend({
     // 界面结果,整个界面都要装在div里
     oMenuConfig: {
         ul: {
@@ -19,7 +19,7 @@ ES.HGT.MapView.Menu = ES.Evented.extend({
                     'tree-title': '工地地图',
                     'data-band': 'MapView:VehLst.onAllSearch',
                     'data-param': 'site',
-                    'Object':'ES.HGT.MapView.TabPanel.SiteTree'
+                    'Object':'ES.MapView.TabPanel.SiteTree'
                 },
                 {
                     'class': 'flip',
@@ -28,7 +28,7 @@ ES.HGT.MapView.Menu = ES.Evented.extend({
                     'tree-title': '路网',
                     'data-band': 'MapView:VehLst.onAllSearch',
                     'data-param': 'lineTree',
-                    'Object':'ES.HGT.MapView.TabPanel.LineTree'
+                    'Object':'ES.MapView.TabPanel.LineTree'
                 },
                 {
                     'class': 'flip',
@@ -37,7 +37,7 @@ ES.HGT.MapView.Menu = ES.Evented.extend({
                     'tree-title': '工地视频',
                     'data-band': 'MapView:StruckBox.initSiteTree',
                     'data-param': 'vedio',
-                    'Object':'ES.HGT.MapView.TabPanel.VideoTree'
+                    'Object':'ES.MapView.TabPanel.VideoTree'
                 },
                 {
                     'class': 'flip',
@@ -47,8 +47,8 @@ ES.HGT.MapView.Menu = ES.Evented.extend({
                     'list-title': '执法车辆',
                     'data-band': 'MapView:VehLst.onAllSearch',
                     'data-param': 'vehTree',
-                    'Object':'ES.HGT.MapView.TabPanel.VehTree',
-                    'ListView':'ES.HGT.MapView.TabPanel.VehLst',
+                    'Object':'ES.MapView.TabPanel.VehTree',
+                    'ListView':'ES.MapView.TabPanel.VehLst',
                     'list-url':'/MapView/QueryVeh',
                 },
 
@@ -59,8 +59,8 @@ ES.HGT.MapView.Menu = ES.Evented.extend({
                     'tree-title': '组织架构',
                     'data-band': 'MapView:VehLst.onAllSearch',
                     'data-param': 'userTree',
-                    'Object':'ES.HGT.MapView.TabPanel.UserTree',
-                    'ListView':'ES.HGT.MapView.TabPanel.UserLst',
+                    'Object':'ES.MapView.TabPanel.UserTree',
+                    'ListView':'ES.MapView.TabPanel.UserLst',
                     'list-title':'执法人员',
                     'list-url':'/User/GetUserList',
                 },
@@ -187,7 +187,7 @@ ES.HGT.MapView.Menu = ES.Evented.extend({
     createPanel: function (oTemp) {
         var bIn = false;
         if( this._aoPanel.length<=0){
-            var oPenel = new ES.HGT.MapView.TabPanel(this._oParent, oTemp);
+            var oPenel = new ES.MapView.TabPanel(this._oParent, oTemp);
             this._aoPanel.push(oPenel);
             return;
         }
@@ -204,7 +204,7 @@ ES.HGT.MapView.Menu = ES.Evented.extend({
             }
         }
         if (!bIn) {
-            var oPenel = new ES.HGT.MapView.TabPanel(this._oParent, oTemp);
+            var oPenel = new ES.MapView.TabPanel(this._oParent, oTemp);
             this._aoPanel.push(oPenel);
         }
     }

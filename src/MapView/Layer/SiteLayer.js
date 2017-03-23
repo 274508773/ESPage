@@ -8,14 +8,14 @@
 
 
 
-ES.HGT.MapView.SiteLayer = L.MapLib.MapMaster.MapOpr.extend({
+ES.MapView.SiteLayer = L.MapLib.MapMaster.MapOpr.extend({
 
     //执行画点，画线操作
     oOption: {
         onEvenSetData: 'MV:Site.setSiteData',
         onEvenSetStatusData: 'MV:Site.setStatusData',
         onEvenClearSites: 'MV:Site.clearSites',
-        oSiteConfig: ES.HGT.oConfig.oSiteConfig,
+        oSiteConfig: ES.oConfig.oSiteConfig,
         cHtml: '<div class="{cCls}"><div class="{cBCls}"></div><div class="{cTCls}">{Name}</div></div>'
     },
 
@@ -170,7 +170,7 @@ ES.HGT.MapView.SiteLayer = L.MapLib.MapMaster.MapOpr.extend({
         }
 
         oMarker.on('click', function () {
-            var oPop = new ES.HGT.MapView.PopSiteInfo(this, oMarker.oPosInfo);
+            var oPop = new ES.MapView.PopSiteInfo(this, oMarker.oPosInfo);
             oPop.showModal();
         }, this);
 

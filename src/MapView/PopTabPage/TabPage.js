@@ -4,7 +4,7 @@
 
 
 
-ES.HGT.MapView.TabSite = ES.Evented.extend({
+ES.MapView.TabSite = ES.Evented.extend({
     oOption: {
         cPageUrl: '/MapMonitor/VehInfoView',
         //cOnLoadEven: 'VehInfo:RealStatus.loadVehInfoView',

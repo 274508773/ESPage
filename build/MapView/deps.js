@@ -58,7 +58,7 @@ var deps = {
 			// 视频监控
 			'MapView/Video/VideoBox.js',
 
-			'MapView/Layer/CloudLayer.js',
+			'MapView/Layer/LineLayer.js',
 			'MapView/Layer/SiteLayer.js',
 			'MapView/Layer/RegionBoundLayer.js',
 			'MapView/Layer/VehRealTrack/LiveMange.js',

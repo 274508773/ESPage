@@ -2,7 +2,7 @@
  * Created by liulin on 2017/1/7.
  */
 
-ES.HGT.MapView.MapLive = L.MapLib.MapMaster.MapOpr.extend({
+ES.MapView.MapLive = L.MapLib.MapMaster.MapOpr.extend({
 
     /*
      为构造函数
@@ -144,7 +144,7 @@ ES.HGT.MapView.MapLive = L.MapLib.MapMaster.MapOpr.extend({
         var oLineLayer = this.findLayer(this._oLineGroup, oPosInfo.PhoneNum);
         if (!oLineLayer) {
             //创建线图层
-            var oPloyLine = L.polyline([oLatLng], ES.HGT.oConfig.oLiveLineConfig);
+            var oPloyLine = L.polyline([oLatLng], ES.oConfig.oLiveLineConfig);
             oPloyLine.cId = oPosInfo.PhoneNum;
             oPloyLine.oPrePosInfo = oPosInfo;
             oPloyLine.addTo(this._oLineGroup);
@@ -157,7 +157,7 @@ ES.HGT.MapView.MapLive = L.MapLib.MapMaster.MapOpr.extend({
 
         //创建轨迹图层
         if (oPrePosInfo) {
-            var oTrackLayer = L.circleMarker([oPrePosInfo.Lat, oPrePosInfo.Lng], ES.HGT.oConfig.oLiveCircleMarkerConfig);
+            var oTrackLayer = L.circleMarker([oPrePosInfo.Lat, oPrePosInfo.Lng], ES.oConfig.oLiveCircleMarkerConfig);
             var cHTML = this._getVecMarkerHtml(oPrePosInfo);
             oTrackLayer.bindPopup(cHTML, this.oPopOption);
 
@@ -185,7 +185,7 @@ ES.HGT.MapView.MapLive = L.MapLib.MapMaster.MapOpr.extend({
         oLayer.cVehNo = oPosInfo.VehicleNo;
         oLayer.nW = 10;
         oLayer.oData = oPosInfo;
-        var oOption = L.extend({radius: 50}, ES.HGT.oConfig.oLiveCircleConfig);
+        var oOption = L.extend({radius: 50}, ES.oConfig.oLiveCircleConfig);
 
         var oCircle = L.circle(oLatLng, oOption).addTo(this._oLivePosGroup);
         //把矢量点添加到地图上
@@ -314,7 +314,7 @@ ES.HGT.MapView.MapLive = L.MapLib.MapMaster.MapOpr.extend({
 });
 
 // 车辆实时跟踪的基本操作
-ES.HGT.MapView.MapLive.include({
+ES.MapView.MapLive.include({
     // 设置弹出层的位置
     oPopOption: { maxWidth: 400 ,autoPan: false},
 
@@ -410,7 +410,7 @@ ES.HGT.MapView.MapLive.include({
 });
 
 // 弹出层的事件操作
-ES.HGT.MapView.MapLive.include({
+ES.MapView.MapLive.include({
 
     // 注册弹出层事件,弹出层绑定对象,每次不是最新oGpsInfo数据，不能用匿名的函数，需要注销
     initPopEven: function (oPopup) {

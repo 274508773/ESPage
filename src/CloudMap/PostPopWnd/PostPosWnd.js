@@ -90,15 +90,10 @@ ES.CloudMap.PostPosWnd = ES.CloudMap.PopWnd.extend({
     check: function () {
 
         if (!$('#PostPosName').val()) {
-            ES.aWarn('请录入网格名称！');
+            ES.aWarn('请录入站点名称！');
             return false;
         }
 
-
-        if (!$('#PostPosType').val()) {
-            ES.aWarn('请录入网格类型！');
-            return false;
-        }
         return true;
     },
 
@@ -116,7 +111,7 @@ ES.CloudMap.PostPosWnd = ES.CloudMap.PopWnd.extend({
             CloudType: 1,
             Map: this.oBusData.oInfo,
             Source: 1,
-            DeptId: this.cParentId,
+            DeptId: (this.cParentId || '0'),
             MapType: 10,
         };
 
@@ -179,6 +174,7 @@ ES.CloudMap.PostPosWnd = ES.CloudMap.PopWnd.extend({
         this.$_oContainer.css({top: (oPos.y - nH - this.oOption.oOffset.nH) + 'px', left: (oPos.x - nW / 2 - this.oOption.oOffset.nW) + 'px'});
 
         $('#PostPosNo').val(oData.oBusData.cId);
+        $('#PostPosNo').attr('disabled',true);
         $('#PostPosName').val(oData.oBusData.cName);
         $('#PostPosType').val(oData.oBusData.cParentText);
         this.oBusData = {};
@@ -197,9 +193,10 @@ ES.CloudMap.PostPosWnd = ES.CloudMap.PopWnd.extend({
 
         this.$_oContainer.css({top: (oPos.y - nH - this.oOption.oOffset.nH) + 'px', left: (oPos.x - nW / 2 - this.oOption.oOffset.nW) + 'px'});
 
-        $('#PostPosName').val();
-        $('#PostPosType').val();
-
+        $('#PostPosName').val('');
+        $('#PostPosType').val('');
+        $('#PostPosNo').val('');
+        $('#PostPosNo').removeAttr('disabled');
         this.oBusData = oData;
         this.oBusData.Id = 0;
         this.$_oContainer.show();

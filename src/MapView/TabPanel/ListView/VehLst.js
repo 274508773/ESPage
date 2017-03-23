@@ -8,7 +8,7 @@
  *
  */
 
-ES.HGT.MapView.TabPanel.VehLst = ES.Evented.extend({
+ES.MapView.TabPanel.VehLst = ES.Evented.extend({
     // 查询面板控件
     oOption: {
         // 车辆url
@@ -254,7 +254,7 @@ ES.HGT.MapView.TabPanel.VehLst = ES.Evented.extend({
 });
 
 // 初始化界面
-ES.HGT.MapView.TabPanel.VehLst.include({
+ES.MapView.TabPanel.VehLst.include({
 
     // 初始化车辆列表数据
     vehHandler: function (oData) {
@@ -295,7 +295,7 @@ ES.HGT.MapView.TabPanel.VehLst.include({
         }
 
         // 获得车辆实时位置信息
-        ES.getData(JSON.stringify({VehicleNos: oAlarmData}), ES.HGT.oConfig.cCurPosUrl, this.curPosHandler, this);
+        ES.getData(JSON.stringify({VehicleNos: oAlarmData}), ES.oConfig.cCurPosUrl, this.curPosHandler, this);
     },
 
     // 设置车辆位置到地图
@@ -446,7 +446,7 @@ ES.HGT.MapView.TabPanel.VehLst.include({
 
 
 // 车辆列表 关注处理
-ES.HGT.MapView.TabPanel.VehLst.include({
+ES.MapView.TabPanel.VehLst.include({
 
     // 初始关注列表
     initAttend: function () {

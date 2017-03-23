@@ -2,7 +2,7 @@
  * Created by liulin on 2016/12/28.
  */
 
-ES.HGT.MapView.VideoBox = ES.Evented.extend({
+ES.MapView.VideoBox = ES.Evented.extend({
 
     oOption: {
         className: '',

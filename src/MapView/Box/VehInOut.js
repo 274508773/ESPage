@@ -5,7 +5,7 @@
  * 车辆出入记录
  */
 
-ES.HGT.MapView.VehInOut = ES.HGT.MapView.ReceiveAlarm.extend({
+ES.MapView.VehInOut = ES.MapView.ReceiveAlarm.extend({
 
     oUIConfig: {
         div: {

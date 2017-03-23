@@ -328,7 +328,7 @@ ES.CloudMap.CreatePos.include({
     '                                   </div>'+
     '                               </div>'+
     '                               <div class="ex-postway-way">'+
-    '                                   <div id="dtGridpwContainer" class="dt-grid-container" style="width:100%;height:325px;"></div>'+
+    '                                   <div id="dtGridpwContainer" class="dt-grid-container" style="width:100%;height:225px;"></div>'+
     '                                   <div id="dtGridpwToolBarContainer" class="dt-grid-toolbar-container"></div>'+
     '                               </div>'+
     '                               <div class="ec-form-group ec-text-right ec-margin-right-sm ec-margin-top-0">'+

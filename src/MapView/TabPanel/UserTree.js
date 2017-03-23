@@ -3,7 +3,7 @@
  */
 
 
-ES.HGT.MapView.TabPanel.UserTree = ES.HGT.MapView.TabPanel.SiteTree.extend({
+ES.MapView.TabPanel.UserTree = ES.MapView.TabPanel.SiteTree.extend({
 
     drawSite: function (oTemp) {
 
@@ -39,7 +39,7 @@ ES.HGT.MapView.TabPanel.UserTree = ES.HGT.MapView.TabPanel.SiteTree.extend({
         var self = this;
 
         if (!this.oPopTree) {
-            this.oPopTree =new ES.HGT.MapView.UserTreeTemp(this._oParent, {  cSelecter: this.oTreeContainer },this.oTreeOption);
+            this.oPopTree =new ES.MapView.UserTreeTemp(this._oParent, {  cSelecter: this.oTreeContainer },this.oTreeOption);
             this.oPopTree.readyCallBack = function () {
                 self.clearTree();
                 this.checkAll();

@@ -5,7 +5,7 @@
  */
 
 
-ES.HGT.MapView.TabPanel.SiteTempTree = ES.HGT.MapView.TabPanel.SiteTree.extend({
+ES.MapView.TabPanel.SiteTempTree = ES.MapView.TabPanel.SiteTree.extend({
 
     drawSite: function (oData) {
         this._oPage.fire('MV:SiteTemp.setSiteData', { aoSiteInfo: oData });

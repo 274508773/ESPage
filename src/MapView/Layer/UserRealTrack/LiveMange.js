@@ -2,7 +2,7 @@
  * Created by liulin on 2017/1/7.
  */
 
-ES.HGT.MapView.UserMange = ES.HGT.MapView.LiveMange.extend({
+ES.MapView.UserMange = ES.MapView.LiveMange.extend({
 
     // 车辆列表构造函数
     initialize: function (oParent, oOption) {
@@ -70,13 +70,13 @@ ES.HGT.MapView.UserMange = ES.HGT.MapView.LiveMange.extend({
         }
 
         // 要判断是否超出了监控设备个数，如果是，要移除最后一个元素
-        if (this.aoLivePos.length >= ES.HGT.oConfig.nMonitorCnt) {
+        if (this.aoLivePos.length >= ES.oConfig.nMonitorCnt) {
             var oMapLiveTemp = this.aoLivePos.pop();
             this.removeMonitor(oMapLiveTemp);
 
         }
 
-        var oMapLive = new ES.HGT.MapView.MapUserLive(this._oParent, oData.oGpsInfo);
+        var oMapLive = new ES.MapView.MapUserLive(this._oParent, oData.oGpsInfo);
         this.aoLivePos.push(oMapLive);
         oData.oGpsInfo.bOpenBubble = true;
         oMapLive.drawLiveTrack(oData);

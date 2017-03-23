@@ -3,15 +3,15 @@
  *
  * 画地图编辑数据
  */
-//new ES.HGT.MapView.SiteLayer(oParent, oOption)
+//new ES.MapView.SiteLayer(oParent, oOption)
 
-ES.HGT.MapView.RegionBoundLayer = ES.HGT.MapView.SiteLayer.extend({
+ES.MapView.RegionBoundLayer = ES.MapView.SiteLayer.extend({
 
     //执行画点，画线操作
     oOption: {
         onEvenSetData: 'MV:RegionBoundLayer.setSiteData',
         onEvenClearSites: 'MV:RegionBoundLayer.clearSites',
-        oSiteConfig: ES.HGT.oConfig.oSiteConfig,
+        oSiteConfig: ES.oConfig.oSiteConfig,
         cBound: '28.753815,115.900097|28.757953,115.89529|28.757577,115.853748|28.761339,115.831947|28.763747,115.819244|28.730184,115.791435|' +
         '28.700074,115.75573|28.667696,115.727921|28.63545880216531,115.71109771728517|28.60140301544218,115.72071075439455|28.56974836181537,115.7347869873047|28.527829,115.774612|' +
         '28.526019,115.805511|28.567035,115.815125|28.608034,115.821304|28.636965,115.839157|28.657454,115.861816|28.699622,115.883102'
@@ -110,7 +110,7 @@ ES.HGT.MapView.RegionBoundLayer = ES.HGT.MapView.SiteLayer.extend({
         }
 
         oMarker.on('click', function () {
-            var oPop = new ES.HGT.MapView.PopSiteInfo(this, oMarker.oPosInfo);
+            var oPop = new ES.MapView.PopSiteInfo(this, oMarker.oPosInfo);
             oPop.showModal();
         }, this);
 

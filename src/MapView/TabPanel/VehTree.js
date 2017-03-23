@@ -2,7 +2,7 @@
  * Created by liulin on 2017/1/7.
  */
 
-ES.HGT.MapView.TabPanel.VehTree = ES.HGT.MapView.TabPanel.SiteTree.extend({
+ES.MapView.TabPanel.VehTree = ES.MapView.TabPanel.SiteTree.extend({
 
     drawSite: function (oData) {
 
@@ -31,7 +31,7 @@ ES.HGT.MapView.TabPanel.VehTree = ES.HGT.MapView.TabPanel.SiteTree.extend({
         var self = this;
 
         if (!this.oPopTree) {
-            this.oPopTree =new ES.HGT.MapView.VehTreeTemp(this._oParent, {  cSelecter: this.oTreeContainer },this.oTreeOption);
+            this.oPopTree =new ES.MapView.VehTreeTemp(this._oParent, {  cSelecter: this.oTreeContainer },this.oTreeOption);
             this.oPopTree.readyCallBack = function () {
                 self.clearTree();
                 this.checkAll();

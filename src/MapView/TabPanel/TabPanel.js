@@ -15,7 +15,7 @@
  */
 
 
-ES.HGT.MapView.TabPanel = ES.Evented.extend({
+ES.MapView.TabPanel = ES.Evented.extend({
 
     oUIConfig: {
         div: {
@@ -119,7 +119,7 @@ ES.HGT.MapView.TabPanel = ES.Evented.extend({
                 //cUrl: '',
                 cTitle: this.oOption.cTitle
             },
-            ES.HGT.oConfig[this.oOption.cFlag]);
+            ES.oConfig[this.oOption.cFlag]);
 
 
     },
@@ -141,10 +141,10 @@ ES.HGT.MapView.TabPanel = ES.Evented.extend({
                 nPageSize: 15,
                 cUrl:this.oOption.cUrl,
             },
-            ES.HGT.oConfig[this.oOption.cFlag]);
+            ES.oConfig[this.oOption.cFlag]);
         var $_oPanel = this.oListView.getPanel();
         // 分页控件
-        this.oPager = new ES.HGT.MapView.TabPanel.LstPager(this, {nPageSize: 15, $_oPanel: $_oPanel});
+        this.oPager = new ES.MapView.TabPanel.LstPager(this, {nPageSize: 15, $_oPanel: $_oPanel});
     },
 
     // 监听事件

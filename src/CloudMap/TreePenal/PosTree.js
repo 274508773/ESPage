@@ -162,7 +162,7 @@ ES.CloudMap.PosTree.include({
     '</span>' +
     '</div>' +
     '</div>' +
-    '<div class="ex-layout-struckbox-content" style="height:450px;"></div>' +
+    '<div class="ex-layout-struckbox-content" style="height:350px;"></div>' +
     '</div>' +
     '</div>',
 

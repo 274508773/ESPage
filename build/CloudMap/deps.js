@@ -28,12 +28,12 @@ var deps = {
 			'CloudMap/PopDel.js',
 			'CloudMap/ShowLayer.js',
 
-			'CloudMap/Handler/BaseTool.js',
-			'CloudMap/Handler/CalEditTool.js',
-			'CloudMap/Handler/DeleteTool.js',
-			'CloudMap/Handler/EditTool.js',
-			'CloudMap/Handler/DrawMarkerTool.js',
-			'CloudMap/Handler/SaveTool.js',
+			'CloudMap/Tool/BaseTool.js',
+			'CloudMap/Tool/CalEditTool.js',
+			'CloudMap/Tool/DeleteTool.js',
+			'CloudMap/Tool/EditTool.js',
+			'CloudMap/Tool/DrawMarkerTool.js',
+			'CloudMap/Tool/SaveTool.js',
 
 			'CloudMap/MenuTool.js',
 			'CloudMap/PostPopWnd/PostPosWnd.js',
@@ -51,10 +51,10 @@ var deps = {
 	CloudMapForPO: {
 		src: [
 			'CloudMap/MenuItem/PostLineMenu.js',
-			'CloudMap/Handler/PostLine/PostLineEditTool.js',
-			'CloudMap/Handler/PostLine/PostLineCalTool.js',
+			'CloudMap/Tool/PostLine/PostLineEditTool.js',
+			'CloudMap/Tool/PostLine/PostLineCalTool.js',
 			'CloudMap/TreePenal/CreatePos.js',
-			'CloudMap/Handler/PostLine/PostLineDrawTool.js',
+			'CloudMap/Tool/PostLine/PostLineDrawTool.js',
 			'CloudMap/PostPopWnd/PostLineWnd.js',
 			'CloudMap/PostPopWnd/PostLineDelWnd.js',
 			'CloudMap/TreePenal/LineTree.js',

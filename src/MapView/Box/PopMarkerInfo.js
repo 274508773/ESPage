@@ -3,7 +3,7 @@
  */
 
 
-ES.HGT.MapView.PopMarkerInfo = ES.Common.Pop.extend({
+ES.MapView.PopMarkerInfo = ES.Common.Pop.extend({
 
     // 车辆列表构造函数
     initialize: function (oParent, oBus) {
@@ -73,7 +73,7 @@ ES.HGT.MapView.PopMarkerInfo = ES.Common.Pop.extend({
             var oTabPage = $(this).data('oTabPage');
 
             if (!oTabPage) {
-                oTabPage = new ES.HGT.MapView.TabSite(self, {
+                oTabPage = new ES.MapView.TabSite(self, {
                     cPageUrl: $(this).attr('content'),
                     cContentSel: $_cContentLi.eq(nIndex),
                     height:self.oOption.height,

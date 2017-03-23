@@ -3,7 +3,7 @@
  */
 
 // 做模拟推送数据，查询历史轨迹数据，然后轨迹定时播放
-ES.HGT.MapView.ReqTrack = ES.Class.extend({
+ES.MapView.ReqTrack = ES.Class.extend({
 
     //1.查询轨迹数据，大于0 的轨迹数据，没有找到就画当前点
     //2.查询到轨迹数据后，定时触发轨迹播放
@@ -56,7 +56,7 @@ ES.HGT.MapView.ReqTrack = ES.Class.extend({
 
             acId.push(this.aoLivePos[i].PhoneNum);
         }
-        ES.getData(acId.join(','),ES.HGT.oConfig.cVehPosUrl,this.TickHandler,this);
+        ES.getData(acId.join(','),ES.oConfig.cVehPosUrl,this.TickHandler,this);
 
 
     },

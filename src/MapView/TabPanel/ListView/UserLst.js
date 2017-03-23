@@ -5,7 +5,7 @@
  *
  */
 
-ES.HGT.MapView.TabPanel.UserLst = ES.HGT.MapView.TabPanel.VehLst.extend({
+ES.MapView.TabPanel.UserLst = ES.MapView.TabPanel.VehLst.extend({
 
     // 查询面板控件
     oOption: {

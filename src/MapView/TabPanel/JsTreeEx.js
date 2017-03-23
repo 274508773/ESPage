@@ -4,7 +4,7 @@
  * 工地树
  */
 
-ES.HGT.MapView.SiteTreeTemp = ES.Common.JsTree.extend({
+ES.MapView.SiteTreeTemp = ES.Common.JsTree.extend({
 
     getTreeCheckNode: function () {
         // 获得所有选中的数组
@@ -56,7 +56,7 @@ ES.HGT.MapView.SiteTreeTemp = ES.Common.JsTree.extend({
 
 
 
-ES.HGT.MapView.VehTreeTemp = ES.Common.JsTree.extend({
+ES.MapView.VehTreeTemp = ES.Common.JsTree.extend({
 
     getTreeCheckNode: function () {
         // 获得所有选中的数组
@@ -108,7 +108,7 @@ ES.HGT.MapView.VehTreeTemp = ES.Common.JsTree.extend({
 });
 
 
-ES.HGT.MapView.UserTreeTemp = ES.Common.JsTree.extend({
+ES.MapView.UserTreeTemp = ES.Common.JsTree.extend({
 
     getTreeCheckNode: function () {
         // 获得所有选中的数组

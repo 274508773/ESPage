@@ -7,7 +7,7 @@
 
 
 
-ES.HGT.MapView.TabPanel.LstPager = ES.Evented.extend({
+ES.MapView.TabPanel.LstPager = ES.Evented.extend({
 
     oOption: {
         // 页数

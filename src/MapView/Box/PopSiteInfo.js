@@ -2,7 +2,7 @@
  * Created by liulin on 2016/12/27.
  */
 
-ES.HGT.MapView.PopSiteInfo = ES.Common.Pop.extend({
+ES.MapView.PopSiteInfo = ES.Common.Pop.extend({
 
     // 车辆列表构造函数
     initialize: function (oParent, oBus) {

@@ -55,7 +55,7 @@ ES.Common.Pop.SubAlarmType = ES.Common.Pop.extend({
             Types: []
         });
 
-        ES.getData(JSON.stringify(oParam), ES.HGT.oConfig.cAlarmHubGet, function (oData) {
+        ES.getData(JSON.stringify(oParam), ES.oConfig.cAlarmHubGet, function (oData) {
             if (!oData || oData.RetCode !== 0) {
                 ES.aErr('报警类型获取失败：' + oData.RetMsg + '，稍后再试');
                 return;
@@ -133,7 +133,7 @@ ES.Common.Pop.SubAlarmType = ES.Common.Pop.extend({
         });
         ES.getData(
             oParam,
-            ES.HGT.oConfig.cAlarmHubSet,
+            ES.oConfig.cAlarmHubSet,
             this.setAlarmConfigHandler,
             this);
     },

@@ -146,11 +146,13 @@ ES.CloudMap.PostLineWnd = ES.CloudMap.PopWnd.extend({
         {
             $('#PostLineName').val(oData.oBusData.cName);
             $('#PostLineNo').val(oData.oBusData.cId);
+            $('#PostLineNo').attr('disabled',true);
         }
         else
         {
-            $('#PostLineName').val();
-            $('#PostLineNo').val();
+            $('#PostLineName').val('');
+            $('#PostLineNo').val('');
+            $('#PostLineNo').removeAttr('disabled');
             Id = 0;
         }
 

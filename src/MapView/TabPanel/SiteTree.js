@@ -12,7 +12,7 @@
  */
 
 
-ES.HGT.MapView.TabPanel.SiteTree = ES.Evented.extend({
+ES.MapView.TabPanel.SiteTree = ES.Evented.extend({
     // 查询面板控件
     oOption: {
         // 树的ur
@@ -154,7 +154,7 @@ ES.HGT.MapView.TabPanel.SiteTree = ES.Evented.extend({
 
         if (!this.oPopTree) {
 
-            this.oPopTree = new ES.HGT.MapView.SiteTreeTemp(this._oParent, {cSelecter: this.oTreeContainer}, this.oTreeOption);
+            this.oPopTree = new ES.MapView.SiteTreeTemp(this._oParent, {cSelecter: this.oTreeContainer}, this.oTreeOption);
             this.oPopTree.readyCallBack = function () {
                 self.clearTree();
                 this.checkAll();
@@ -193,13 +193,13 @@ ES.HGT.MapView.TabPanel.SiteTree = ES.Evented.extend({
         }
 
         // 获得工地的GPS信息
-        ES.getData({anSiteId: anSiteId}, ES.HGT.oConfig.cSiteInfoUrl, this.drawSite, this);
+        ES.getData({anSiteId: anSiteId}, ES.oConfig.cSiteInfoUrl, this.drawSite, this);
     },
 
     // 画一个工地
     drawOneSite: function (nSiteId) {
 
-        ES.getData({anSiteId: [nSiteId]}, ES.HGT.oConfig.cSiteInfoUrl, this.drawSite, this);
+        ES.getData({anSiteId: [nSiteId]}, ES.oConfig.cSiteInfoUrl, this.drawSite, this);
     },
 
     initCheckHandler: function () {
@@ -243,7 +243,6 @@ ES.HGT.MapView.TabPanel.SiteTree = ES.Evented.extend({
 
     // 画工地,对地图图层集合操作
     drawSite: function (oData) {
-        //MV:Site.setSiteData
         this._oPage.fire('MV:Site.setSiteData', {aoSiteInfo: oData});
     },
 

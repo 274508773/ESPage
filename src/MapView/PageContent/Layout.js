@@ -4,7 +4,7 @@
  * 容器的定义和编辑
  */
 
-ES.HGT.MapView.LayoutContent = ES.Evented.extend({
+ES.MapView.LayoutContent = ES.Evented.extend({
 
     oUIConfig: {
 

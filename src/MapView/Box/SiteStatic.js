@@ -6,7 +6,7 @@
  */
 
 
-ES.HGT.MapView.SiteStatic = ES.Evented.extend({
+ES.MapView.SiteStatic = ES.Evented.extend({
 
     oOption: {
         // 父级容器
@@ -126,7 +126,7 @@ ES.HGT.MapView.SiteStatic = ES.Evented.extend({
     initUI: function () {
         ES.initTag(this._oContainer.eq(0), this.oUIConfig);
         //this.initData();
-        ES.getData({nDeptId: ES.HGT.oConfig.nDeptId}, this.oOption.cUrl, this.dataHandler, this);
+        ES.getData({nDeptId: ES.oConfig.nDeptId}, this.oOption.cUrl, this.dataHandler, this);
 
     },
 

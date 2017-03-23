@@ -9,7 +9,7 @@
  */
 
 
-ES.HGT.MapView.ReceiveAlarm = ES.Evented.extend({
+ES.MapView.ReceiveAlarm = ES.Evented.extend({
 
     oUIConfig: {
         div: {
@@ -196,7 +196,7 @@ ES.HGT.MapView.ReceiveAlarm = ES.Evented.extend({
                 var Images = [];
                 Images.push(m_cPicUrl + aoAlarmInfo[i].ImagesUrl);
                 aoAlarmInfo[i].Images = Images;
-                aoAlarmInfo[i].AlarmTypeName = ES.HGT.oConfig.oAlarmTypeName[aoAlarmInfo[i].AlarmType];
+                aoAlarmInfo[i].AlarmTypeName = ES.oConfig.oAlarmTypeName[aoAlarmInfo[i].AlarmType];
 
                 // 添加数据到 data 中
                 this._aoData.unshift(aoAlarmInfo[i]);
@@ -400,7 +400,7 @@ ES.HGT.MapView.ReceiveAlarm = ES.Evented.extend({
 });
 
 // 对告警订阅的设置
-ES.HGT.MapView.ReceiveAlarm.include({
+ES.MapView.ReceiveAlarm.include({
 
     cHtml:'<div style="width: 95%;margin: 7px 20px;border-bottom:1px solid #c5c5c5;padding: 0;overflow: hidden;">'+
     '<label for="_type_sel_all">'+

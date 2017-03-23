@@ -5,7 +5,7 @@
  *
  */
 
-ES.HGT.MapView.UserLayer = L.MapLib.MapMaster.MapOpr.extend({
+ES.MapView.UserLayer = L.MapLib.MapMaster.MapOpr.extend({
 
     oPopOption: { maxWidth: 400 },
     /*

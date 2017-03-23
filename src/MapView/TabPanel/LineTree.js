@@ -6,7 +6,7 @@
  */
 
 
-ES.HGT.MapView.TabPanel.LineTree = ES.HGT.MapView.TabPanel.SiteTree.extend({
+ES.MapView.TabPanel.LineTree = ES.MapView.TabPanel.SiteTree.extend({
 
     removeDrawSite:function(oNode) {
         var acId = this.oPopTree.getSelfChildNode(oNode);
@@ -47,7 +47,7 @@ ES.HGT.MapView.TabPanel.LineTree = ES.HGT.MapView.TabPanel.SiteTree.extend({
     drawNode: function () {
         var anId = this.oPopTree.getTreeCheckNode();
 
-        if (!anId || anId.length <= 0) {
+        /*if (!anId || anId.length <= 0) {
             return;
         }
         var aoNode =[];
@@ -58,11 +58,21 @@ ES.HGT.MapView.TabPanel.LineTree = ES.HGT.MapView.TabPanel.SiteTree.extend({
                 continue;
             }
             aoNode.push(oTemp.data);
-        }
-        //对地图图层集合操作
-        this._oPage.fire('CloudMap:ShowLayer.DrawLayers',{aoNode:aoNode})
+        }*/
+        ES.getData({yldm:'777'/*anId.join(',')*/}, '/hbgps/gisCar/getStationByYLDM', this.LineHandler, this);
     },
+    // 获得线路数据
+    LineHandler: function (oData) {
+        if (!oData || oData.length <= 0) {
+            return;
+        }
 
+        this._oPage.on('MapView:ShowLayer.DrawLayers', { oData: oData });
+
+        var oBusData = {aoLatLng: {lat: oData[0].lat, lng: oData[0].lng, alt: oData[0].zm}, nId: 1, cId: oData[0].yldm, cName: oData[0].ylmc};
+
+
+    },
     // 初始化界面
     initOn: function () {
 
