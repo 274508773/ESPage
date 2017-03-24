@@ -2,14 +2,14 @@
  * Created by liufangzhou on 2017/3/23.
  */
 ES.MapView.LineLayer = L.MapLib.MapMaster.MapOpr.extend({
-    //Ö´ĞĞ»­µã£¬»­Ïß²Ù×÷
+    //æ‰§è¡Œç”»ç‚¹ï¼Œç”»çº¿æ“ä½œ
     oOption: {
         onEvenDrawLayers: 'MapView:ShowLayer.DrawLayers',
 
         onEvenClearLayers: 'MapView:ShowLayer.clearLayer',
 
         onEvenRemoveLayers: 'MapView:ShowLayer.removeLayers',
-
+        oSiteConfig: ES.MapView.oConfig.oSiteConfig,
         /*oSiteConfig: ES.oConfig.oSiteConfig,*/
         cHtml: '<div class="{cCls}"><div class="{cBCls}"></div><div class="{cTCls}">{Name}</div></div>'
     },
@@ -17,22 +17,22 @@ ES.MapView.LineLayer = L.MapLib.MapMaster.MapOpr.extend({
     initialize: function (oParent, oOption) {
         L.MapLib.MapMaster.MapOpr.prototype.initialize.call(this, oParent, {});
         ES.setOptions(this, oOption);
-        // Ö´ĞĞ×Ô¼ºµÄ·½·¨
+        // æ‰§è¡Œè‡ªå·±çš„æ–¹æ³•
         this._initGroup();
         this._loadOn();
     },
 
-    // ³õÊ¼»¯Group
+    // åˆå§‹åŒ–Group
     _initGroup: function () {
 
         this._oPolygonGroup = L.layerGroup();
         this._oMap.addLayer(this._oPolygonGroup);
 
     },
-    //³õÊ¼»¯Ê±¼ÓÔØÊı¾İ
+    //åˆå§‹åŒ–æ—¶åŠ è½½æ•°æ®
     _loadOn: function () {
 
-        // »­ËùÓĞµÄ¹¤µØÊı¾İ
+        // ç”»æ‰€æœ‰çš„å·¥åœ°æ•°æ®
         this._oParent.on(this.oOption.onEvenDrawLayers, this.drawLayers, this);
         this._oParent.on(this.oOption.onEvenClearLayers, this.clearLayer, this);
         this._oParent.on(this.oOption.onEvenRemoveLayers, this.removeLayers, this);
@@ -40,19 +40,19 @@ ES.MapView.LineLayer = L.MapLib.MapMaster.MapOpr.extend({
     },
     removeLayers: function (oData) {
 
-        if (!this._oPolygonGroup || !oData || oData.acId.length <= 0) {
+        if (!this._oPolygonGroup || !oData || oData.anId.length <= 0) {
             return;
         }
 
-        var aoInfo = oData.acId;
+        var aoInfo = oData.anId;
 
         for (var i = 0; i < aoInfo.length; i++) {
             var nId = parseInt(aoInfo[i]);
-            if (nId > 0) {
+            if (nId < 0) {
                 continue;
             }
 
-            var oLayer = this.findLayer(this._oPolygonGroup, -nId);
+            var oLayer = this.findLayer(this._oPolygonGroup, nId);
             if (!oLayer) {
                 continue;
             }
@@ -65,24 +65,20 @@ ES.MapView.LineLayer = L.MapLib.MapMaster.MapOpr.extend({
     clearLayer: function () {
         this._oPolygonGroup.clearLayers();
     },
+    // ç”»æ‰€æœ‰å·¥åœ°ï¼Œæ•°æ®ä¿æŠ¤æ‰€æœ‰å·¥åœ°,å­˜åœ¨ç›¸åŒçš„å·¥åœ°å’Œæ¶ˆçº³ç‚¹å°±ä¸ç”¨ç”»
     drawLayers: function(oData){
         this.clearLayer();
 
-        if (!oData || !oData.aoNode) {
+        if (!oData||!oData.oData ) {
             return;
         }
 
-
-        var aoNode = oData.aoNode;
-
-
-
-        for (var i = 0; i < aoNode.length; i++) {
-            var oLayer = this.findLayer(this._oPolygonGroup, aoNode[i].Id);
+        for (var i = 0; i < oData.oData.length; i++) {
+            var oLayer = this.findLayer(this._oPolygonGroup, oData.oData[i].ylCode);
             if(oLayer){
                 return;
             }
-            this.drawLayer(aoNode[i]);
+            this.drawLayer(oData.oData[i]);
         }
     },
     drawLayer: function (oData) {
@@ -90,30 +86,22 @@ ES.MapView.LineLayer = L.MapLib.MapMaster.MapOpr.extend({
             return ;
         }
 
-        // ±à¼­Î§À¸Êı¾İ,»­Î§À¸Ê±Òª±íÃ÷×Ô¼ºµÄÃû³Æ
+        // ç¼–è¾‘é‚®è·¯,ç”»å›´æ æ—¶è¦è¡¨æ˜è‡ªå·±çš„åç§°
         var oVehLine = this.createLayer(oData);
         if (!oVehLine) {
             return;
         }
-        oVehLine.cId = oData.Id;
-        oVehLine.oBusInfo = oData;
+        oVehLine.cId = oData.ylCode;
+        oVehLine.cName  = oData.ylName;
+        //oVehLine.oBusInfo = oData;
     },
-    // ÉèÖÃÍ¼²ãÉèÖÃ
+    // è®¾ç½®å›¾å±‚è®¾ç½®
     createLayer:function(oData) {
         var oVehLine = null;
-        if (!oData || !oData.Json) return oVehLine;
+        if (!oData) return oVehLine;
 
-        var oTemp = null;
 
-        try {
-            oTemp = JSON.parse(oData.Json);
-        } catch (e) {
-            oTemp = null;
-        }
-        if (!oTemp) {
-            return oVehLine;
-        }
-        oVehLine = L.polygon(oTemp.aoLatLng, oTemp.oOption).addTo(this._oPolygonGroup);
+        oVehLine = L.polyline(oData.data, {}).addTo(this._oPolygonGroup);
 
         return oVehLine;
     },

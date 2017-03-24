@@ -15,7 +15,7 @@ ES.MapView.SiteLayer = L.MapLib.MapMaster.MapOpr.extend({
         onEvenSetData: 'MV:Site.setSiteData',
         onEvenSetStatusData: 'MV:Site.setStatusData',
         onEvenClearSites: 'MV:Site.clearSites',
-        oSiteConfig: ES.oConfig.oSiteConfig,
+        oSiteConfig: ES.MapView.oConfig.oSiteConfig,
         cHtml: '<div class="{cCls}"><div class="{cBCls}"></div><div class="{cTCls}">{Name}</div></div>'
     },
 

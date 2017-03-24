@@ -16,7 +16,7 @@ ES.MapView.CloudLayer = L.MapLib.MapMaster.MapOpr.extend({
 
         onEvenRemoveLayers: 'CloudMap:ShowLayer.removeLayers',
 
-        oSiteConfig: ES.oConfig.oSiteConfig,
+        oSiteConfig: ES.MapView.oConfig.oSiteConfig,
         cHtml: '<div class="{cCls}"><div class="{cBCls}"></div><div class="{cTCls}">{Name}</div></div>'
     },
 

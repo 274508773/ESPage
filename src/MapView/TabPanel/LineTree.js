@@ -42,24 +42,27 @@ ES.MapView.TabPanel.LineTree = ES.MapView.TabPanel.SiteTree.extend({
             //self.oPopTree.$_oTree.refresh();
         }
     },
-
+    // 移除邮路
+    removeDrawSite: function (oNode) {
+        var anId = this.oPopTree.getSelfChildNode(oNode);
+        this._oPage.fire('MapView:ShowLayer.removeLayers', {anId: anId});
+    },
     // 获得所有的 节点
     drawNode: function () {
         var anId = this.oPopTree.getTreeCheckNode();
 
-        /*if (!anId || anId.length <= 0) {
+        if (!anId || anId.length <= 0) {
             return;
         }
-        var aoNode =[];
+        /*var aoNode =[];
         for (var i = 0; i < anId.length; i++) {
             var oTemp = this.oPopTree.$_oTree.get_node(anId[i]);
-
             if (!oTemp.data) {
                 continue;
             }
             aoNode.push(oTemp.data);
         }*/
-        ES.getData({yldm:'777'/*anId.join(',')*/}, '/hbgps/gisCar/getStationByYLDM', this.LineHandler, this);
+        ES.getData({yldm:anId.join(',')}, '/hbgps/gisCar/getStationByYLDM', this.LineHandler, this);
     },
     // 获得线路数据
     LineHandler: function (oData) {
@@ -67,9 +70,9 @@ ES.MapView.TabPanel.LineTree = ES.MapView.TabPanel.SiteTree.extend({
             return;
         }
 
-        this._oPage.on('MapView:ShowLayer.DrawLayers', { oData: oData });
+        this._oPage.fire('MapView:ShowLayer.DrawLayers', { oData: oData });
 
-        var oBusData = {aoLatLng: {lat: oData[0].lat, lng: oData[0].lng, alt: oData[0].zm}, nId: 1, cId: oData[0].yldm, cName: oData[0].ylmc};
+        //var oBusData = {aoLatLng: {lat: oData[0].lat, lng: oData[0].lng, alt: oData[0].zm}, nId: 1, cId: oData[0].yldm, cName: oData[0].ylmc};
 
 
     },
