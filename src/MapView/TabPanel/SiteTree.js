@@ -163,10 +163,9 @@ ES.MapView.TabPanel.SiteTree = ES.Evented.extend({
 
             this.oPopTree.checkAllCallBack = function () {
 
-                    self.drawCheckSite();
+                self.drawCheckSite();
 
             };
-
             this.oPopTree.uncheckAllCallBack = function () {
                 self._oPage.fire('SiteLayer:clearAll');
             };
@@ -179,21 +178,20 @@ ES.MapView.TabPanel.SiteTree = ES.Evented.extend({
 
     // 移除绘制工地
     removeDrawSite: function (oNode) {
-        var anId = this.oPopTree.getSelfChildNode(oNode);
-        this._oPage.fire('MV:Site.clearSites', {anId: anId});
+        var anSiteInfo = this.oPopTree.getTreeCheckNodes();
+        this._oPage.fire('MV:Site.DrawSite', {oData: anSiteInfo});
     },
 
-    // 画选中的工地
+    // 画选中的站点
     drawCheckSite: function () {
-        //获得所有的工地
-        var anSiteId = this.oPopTree.getTreeCheckNode();
+        //获得所有的站点
+        var anSiteInfo = this.oPopTree.getTreeCheckNodes();
 
-        if (!anSiteId || anSiteId.length <= 0) {
+        if (!anSiteInfo || anSiteInfo.length <= 0) {
             return;
         }
 
-        // 获得工地的GPS信息
-        ES.getData({anSiteId: anSiteId}, ES.oConfig.cSiteInfoUrl, this.drawSite, this);
+        this._oPage.fire('MV:Site.DrawSite', { oData: anSiteInfo });
     },
 
     // 画一个工地
@@ -207,17 +205,17 @@ ES.MapView.TabPanel.SiteTree = ES.Evented.extend({
         var self = this;
         this.oPopTree.checkCallBack = function (e, oThisNode) {
             if(self.bCheck) {
-                //self.drawCheckSite();
+                self.drawCheckSite();
                 // 定位到当前位置上
-                if(oThisNode.node.children && oThisNode.node.children.length>0){
-                    self.drawCheckSite();
-                }
-                else
-                {
-                    var cId = oThisNode.node.id;
-                    self.drawOneSite(parseInt(cId.replace('s', '')));
-
-                }
+                //if(oThisNode.node.children && oThisNode.node.children.length>0){
+                //    self.drawCheckSite();
+                //}
+                //else
+                //{
+                //    var cId = oThisNode.node.id;
+                //    self.drawOneSite(parseInt(cId.replace('s', '')));
+                //
+                //}
             }
         };
     },

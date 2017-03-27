@@ -6,6 +6,26 @@
 
 ES.MapView.SiteTreeTemp = ES.Common.JsTree.extend({
 
+    getTreeCheckNodes: function () {
+        // 获得所有选中的数组
+        var aoNodeId = this.$_oTree.get_checked();
+        if (!aoNodeId || aoNodeId.length <= 0) return [];
+        var anSiteId = [];
+        // 获得所有选中的节点id,工地id
+        for (var i = 0; i < aoNodeId.length; i++) {
+            if (!aoNodeId[i]) continue;
+            var oTemp = this.$_oTree.get_node(aoNodeId[i])
+            //var nIndex = aoNodeId[i].indexOf("s");
+            //if (nIndex < 0) {
+            //    continue;
+            //}
+
+            anSiteId.push(oTemp);
+        }
+        if (!anSiteId || anSiteId.length <= 0) return [];
+        return anSiteId;
+    },
+
     getTreeCheckNode: function () {
         // 获得所有选中的数组
         var aoNodeId = this.$_oTree.get_checked();
@@ -24,7 +44,19 @@ ES.MapView.SiteTreeTemp = ES.Common.JsTree.extend({
         if (!anSiteId || anSiteId.length <= 0) return [];
         return anSiteId;
     },
-
+    getTreeCheckNodeId: function () {
+        // 获得所有选中的数组
+        var aoNodeId = this.$_oTree.get_checked();
+        if (!aoNodeId || aoNodeId.length <= 0) return [];
+        var anSiteId = [];
+        // 获得所有选中的节点id,工地id
+        for (var i = 0; i < aoNodeId.length; i++) {
+            if (!aoNodeId[i]) continue;
+            anSiteId.push(aoNodeId[i]);
+        }
+        if (!anSiteId || anSiteId.length <= 0) return [];
+        return anSiteId;
+    },
     getSelfChildNode: function (oNode) {
         var anNode = [];
         if (!oNode) {

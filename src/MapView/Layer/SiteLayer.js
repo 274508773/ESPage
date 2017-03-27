@@ -12,6 +12,7 @@ ES.MapView.SiteLayer = L.MapLib.MapMaster.MapOpr.extend({
 
     //执行画点，画线操作
     oOption: {
+        onEvenDrawSite: 'MV:Site.DrawSite',
         onEvenSetData: 'MV:Site.setSiteData',
         onEvenSetStatusData: 'MV:Site.setStatusData',
         onEvenClearSites: 'MV:Site.clearSites',
@@ -44,6 +45,8 @@ ES.MapView.SiteLayer = L.MapLib.MapMaster.MapOpr.extend({
     _loadOn: function () {
 
         //this._oParent.fire('MV:Site.setSiteData', { aoSiteInfo: oData });
+        //画出站点
+        this._oParent.on(this.oOption.onEvenDrawSite, this.DrawSites, this);
         //给界面赋值，并画工地
         this._oParent.on(this.oOption.onEvenSetData, this.setSiteData, this);
 
@@ -53,12 +56,45 @@ ES.MapView.SiteLayer = L.MapLib.MapMaster.MapOpr.extend({
         //监听地图放大缩小时间
         this._oMap.on("zoomend", this.drawSites, this);
 
-        // 清除工地
+        // 清除站点
         this._oParent.on(this.oOption.onEvenClearSites, this.clearSites, this);
 
         this._oParent.on('SiteLayer:clearAll', this.clearAll, this);
     },
+    DrawSites:function(oData){
+        this.clearAll();
+        if (!oData ) {
+            return;
+        }
 
+        for (var i = 0; i < oData.oData.length; i++) {
+            var oLayer = this.findLayer(this._oSiteGroup, oData.oData[i].id);
+            if(oLayer){
+                return;
+            }
+            this.DrawSite(oData.oData[i]);
+        }
+    },
+    DrawSite:function(oData){
+        if (!oData) {
+            return ;
+        }
+
+        // 编辑邮路,画围栏时要表明自己的名称
+        var oVehLine = this.createLayer(oData);
+        if (!oVehLine) {
+            return;
+        }
+        oVehLine.cId = oData.id;
+        oVehLine.cName  = oData.text;
+    },
+    createLayer:function(oData) {
+        var oVehLine = null;
+        if (!oData) return oVehLine;
+        oVehLine = L.marker(oData.data, {}).addTo(this._oSiteGroup);
+
+        return oVehLine;
+    },
     clearAll: function () {
         if (this.aoSiteInfo && this.aoSiteInfo.length > 0) {
 

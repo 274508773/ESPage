@@ -1,17 +1,9 @@
 /**
  * Created by liulin on 2017/2/4.
  */
-/**
- * Created by liulin on 2017/1/7.
- */
 
 
 ES.MapView.TabPanel.LineTree = ES.MapView.TabPanel.SiteTree.extend({
-
-    removeDrawSite:function(oNode) {
-        var acId = this.oPopTree.getSelfChildNode(oNode);
-        this._oPage.fire('CloudMap:ShowLayer.removeLayers', { acId: acId });
-    },
 
     // 初始化树
     InitTree: function () {

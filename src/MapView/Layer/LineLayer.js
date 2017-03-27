@@ -47,16 +47,10 @@ ES.MapView.LineLayer = L.MapLib.MapMaster.MapOpr.extend({
         var aoInfo = oData.anId;
 
         for (var i = 0; i < aoInfo.length; i++) {
-            var nId = parseInt(aoInfo[i]);
-            if (nId < 0) {
-                continue;
-            }
-
-            var oLayer = this.findLayer(this._oPolygonGroup, nId);
+            var oLayer = this.findLayer(this._oPolygonGroup, aoInfo[i]);
             if (!oLayer) {
                 continue;
             }
-
             this._oPolygonGroup.removeLayer(oLayer);
         }
 
